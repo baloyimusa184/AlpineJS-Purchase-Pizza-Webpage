@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<section class="BG">
+<html lang="en">
+  <head>   
+   <link rel="stylesheet" href="style.css">
+   <script src="script.js"></script>
+  </head>
+ 
+  <script src="//unpkg.com/alpinejs" defer></script>
+  <title>Pizza Menu</title>
+  <body>
+
+    <div x-data='{
+        cart: [],
+        pizzas: [
+          { size: "Small", price: 33 },
+          { size: "Medium", price: 51 },
+          { size: "Large", price: 90 }
+        ],
+        addToCart(pizzaIndex) {
+          const pizza = this.pizzas[pizzaIndex];
+          this.cart.push({ size: pizza.size, price: pizza.price });
+        },
+        removeFromCart(index) {
+          this.cart.splice(index, 1);
+        },
+        calculateTotal() {
+          return this.cart.reduce((total, pizza) => total + pizza.price, 0);
+        },
+        buy() {
+          const totalPrice = this.calculateTotal();
+          alert("Purchase confirmed! Total price: R" + totalPrice);
+          this.cart = [];
+        }
+      }'>
+
+<section class="wholeBG">
+    <main>
+		<h1 class="font">PIZZA MOUTH BLAST</h1>
+		<h5 class="fontA">FREE DELIVERY ON YOUR FIRST ORDER
+        <img src="delivery.png" alt="Vegetable Pizza" width="100px" height="100px"style="float: right;"> </h5>
+
+                    
+        <div>
+            <h2><strong>CART</strong></h2>
+            <ul>
+              <template x-for="(pizza, index) in cart">
+                <li>
+                  <span x-text="pizza.size + ' Pizza - R' + pizza.price"></span>
+                  <button @click="removeFromCart(index)">Remove From Cart</button>
+                </li>
+              </template>
+            </ul>
+            <p>Total Price: R<span x-text="calculateTotal()"></span></p>
+            <button x-show="cart.length > 0" @click="buy">confirm purchase</button>
+          </div>
+
+
+          <section class="pizza_layout">
+		  <section class="pizza">
+
+			<section class="vege">
+			<h2 class="font1">SMALL</h2>
+			<img src="pizza.png" alt="Vegetable Pizza" width="50px" height="50px"style="float: right;" >
+		
+          <article class="item">
+            <p class="flavor"></p>SMALL<p class="price">R33</p>
+          </article>
+          <button @click="addToCart(0)">BUY</button>    
+			</section>
+        </section>
+
+          <section class="pizza">
+			<section class="pepper">
+            <h3 class="font1">MEDIUM</h3>
+            <img src="pizza2.png" alt="Vegetable Pizza" width="100px" height="100px"style="float: right;" >
+            <article class="item">
+              <p class="pizza1">MEDIUM</p><p class="price">R51</p>
+            </article>
+            <button @click="addToCart(1)">BUY</button>
+			</section>
+		  </section>
+
+          <section class="pizza">
+			<section class="BBQ">
+            <h4 class="font1">LARGE</h4>
+			<img src="pizza3.png" alt="Vegetable Pizza" width="120px" height="120px"style="float: right;" >
+            <article>
+              <p class="pizza2" >LARGE</p><p class="price">R90</p>
+            </article>
+            <button @click="addToCart(2)">BUY</button>
+			</section>
+          </section>
+
+		  </section>
+	  </section>
+      
+
+
+      <hr class="bottom-line">
+      <footer>
+        <p>
+          <a href="https://www.facebook.com/baloyimusa184" target="_blank">Visit our facebook Page</a>
+        </p>
+        <p class="address">Pennyville</p>
+		<p class="address">Rietbok Dr </p>
+		<p class="address">1804</p>
+      </footer>
+     
+    </main>
+    <footer>
+      <p>
+        Our - <a href="https://www.facebook.com/baloyimusa184">Socials</a>
+      </p>
+    </footer>
+	</head>
+</section>
+  </body>
+  </section>
+</html> 
+
